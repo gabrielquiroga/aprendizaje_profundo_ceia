@@ -1,0 +1,50 @@
+[project]
+name = "aprendizaje_profundo_ceia"
+version = "0.1.0"
+description = "Aprendizaje Profundo - CEIA"
+requires-python = ">=3.10, <=3.12"
+dependencies = [
+    "matplotlib>=3.7.1",
+    "numpy>=1.24.3",
+    "pandas>=2.0.1",
+    "torch>=2.0.1",
+    "seaborn>=0.12.2",
+    "scikit-learn>=1.2.2",
+    "scipy>=1.10.1",
+    "xgboost>=1.7.5",
+    "ipykernel>=6.23.0",
+]
+
+[tool.setuptools]
+py-modules = []
+
+[tool.ruff]
+# Incluir notebooks en el análisis
+extend-include = ["*.ipynb"]
+line-length = 120
+
+[tool.ruff.lint]
+select = [
+    "E",    # pycodestyle errors
+    "W",    # pycodestyle warnings
+    "F",    # pyflakes
+    "I",    # isort (orden de imports)
+    "N",    # pep8-naming
+    "UP",   # pyupgrade (sintaxis moderna)
+    "NPY",  # reglas específicas de NumPy
+    "PD",   # reglas específicas de Pandas
+]
+ignore = [
+    "E501",  # largo de línea (flexible en notebooks)
+    "E402",  # imports no al inicio (común en notebooks)
+    "F401",  # imports no usados (común entre celdas)
+]
+
+[tool.ruff.lint.per-file-ignores]
+# Reglas más relajadas para notebooks
+"*.ipynb" = ["E741", "N806", "N803", "F811"]
+
+[dependency-groups]
+dev = [
+    "ruff>=0.15.12",
+]
